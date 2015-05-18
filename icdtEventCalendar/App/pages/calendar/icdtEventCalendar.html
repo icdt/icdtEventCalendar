@@ -1,14 +1,14 @@
 ﻿
 <link href="lib/fullcalendar/fullcalendar.css" rel="stylesheet" />
 <!--<link href="lib/fullcalendar/fullcalendar.print.css" rel="stylesheet" />-->
-
-<link href="lib/fullcalendar/bootstrap-clockpicker.min.css" rel="stylesheet" />
+<!--<link href="lib/fullcalendar/bootstrap-clockpicker.min.css" rel="stylesheet" />-->
 <!--<link href="lib/fullcalendar/github.min.css" rel="stylesheet" />-->
 <!--<link href="lib/fullcalendar/custom_calendar.css" rel="stylesheet" />-->
+<link rel="stylesheet" href="lib/fullcalendar/include/ui-1.10.0/ui-lightness/jquery-ui-1.10.0.custom.min.css" type="text/css" />
+<link href="lib/fullcalendar/jquery.ui.timepicker.css" rel="stylesheet" />
 
 <style>
     body {
-       
         text-align: center;
         font-size: 14px;
         font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
@@ -77,6 +77,15 @@
         background: #f2f2f2;
         cursor: not-allowed;
     }
+
+    .ui-timepicker-table td a {
+        display: block;
+         padding: 0 0.1em 0 0; 
+         width: 1.6em; 
+        cursor: pointer;
+        text-align: right;
+        text-decoration: none;
+    }
 </style>
 
 <div id='wrap'>
@@ -89,7 +98,7 @@
             <br />
             開始時間：<input type="text" class="form-input date" id="itemstart" ng-model="start" />
             <br />
-            結束時間：<input type="text" class="form-input date" id="itemend" ng-model="end"/>
+            結束時間：<input type="text" class="form-input date" id="itemend" ng-model="end" />
             <br />
             <br />
             <button id="send">送出</button>
@@ -102,7 +111,7 @@
         </p>
     </div>
     <!--<div id='calendar'></div>-->
-    <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" id="calendar"></div> 
+    <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" id="calendar"></div>
     <div style='clear:both'></div>
     <div ng-repeat="item in events track by item._id">
         {{item}}
@@ -113,17 +122,32 @@
 <script src="lib/fullcalendar/jquery-ui.custom.min.js"></script>
 <script src="lib/fullcalendar/fullcalendar.min.js"></script>
 <script src="lib/fullcalendar/lang-all.js"></script>
-<script src="lib/fullcalendar/bootstrap-clockpicker.min.js"></script>
+<script src="lib/fullcalendar/jquery.ui.timepicker.js"></script>
+<!--<script src="lib/fullcalendar/bootstrap-clockpicker.min.js"></script>-->
 
 
 <script>
     $(function () {
-        $('.date').clockpicker({
-            placement: 'bottom',
-            align: 'left',
-            autoclose: true,
-            'default': 'now'
+        $('.date').timepicker({
+            hourText: 'Hours',
+            minuteText: 'Minutes',
+            amPmText: ['AM', 'PM'],
+            timeSeparator: ':',
+            showLeadingZero: false,
+            nowButtonText: 'Now',
+            showNowButton: true,
+            closeButtonText: 'Done',
+            showCloseButton: true,
+            deselectButtonText: 'Désélectionner',
+            showDeselectButton: false
         });
+
+        //$('.date').clockpicker({
+        //    placement: 'bottom',
+        //    align: 'left',
+        //    autoclose: true,
+        //    'default': 'now'
+        //});
     });
 </script>
 

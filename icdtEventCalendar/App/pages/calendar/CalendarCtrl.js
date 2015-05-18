@@ -1,8 +1,11 @@
 ﻿app.controller('CalendarCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', function ($scope, $compile, $timeout, uiCalendarConfig) {
-
+    $scope.events = [];
     /* event source that contains custom events on the scope */
-    $scope.events = JSON.parse(localStorage["events"]);
+    if (localStorage["events"] != null) {
+        $scope.events = JSON.parse(localStorage["events"]);
+    }
     
+
     /* alert on eventClick */
     $scope.alertOnEventClick = function (date, jsEvent, view) {
 
@@ -50,8 +53,8 @@
                 var startHour = $scope.start.split(':')[0];
                 var startMinute = $scope.start.split(':')[1];
 
-                var endHour = $scope.start.split(':')[0];
-                var endMinute = $scope.start.split(':')[1];
+                var endHour = $scope.end.split(':')[0];
+                var endMinute = $scope.end.split(':')[1];
 
                 $scope.events.push({
                     title: $scope.title + " " +$scope.doc,
